@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="overview"></div>
+    <div id="overview1"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            static propTypes = {
+                value: PropTypes.string
+            }
+            static defaultProps = {
+                value: "default"
+            }
+
+            render() {
+                return <h2>MyComponent+{this.props.value}</h2>
+            }
+        }
+        function fu() {
+            console.log('test');
+        }
+        const C = { value: "valueC", fu: { fu } }
+        ReactDOM.render(<MyComponent value="O" fu={fu} />, document.getElementById('overview'));
+        ReactDOM.render(<MyComponent {...C} />, document.getElementById('overview1'));
+    </script>
+</body>
+
+</html>

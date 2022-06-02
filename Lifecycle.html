@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .list {
+            width: 200px;
+            height: 150px;
+            background-color: bisque;
+            overflow: auto;
+        }
+
+        .news {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overview"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            state = { newsArr: [] }
+            componentDidMount() {
+                setInterval(() => {
+                    this.setState({ newsArr: ['News' + (this.state.newsArr.length + 1), ...this.state.newsArr] })
+                }, 1000)
+
+            }
+            getSnapshotBeforeUpdate() {
+                return this.list.current.scrollHeight
+            }
+            componentDidUpdate(prevProps, prevState, snapshot) {
+                this.list.current.scrollTop += this.list.current.scrollHeight - snapshot
+            }
+            componentWillUnmount() {
+
+            }
+            list = React.createRef()
+            render() {
+                return (
+                    <div className="list" ref={this.list}>
+                        {this.state.newsArr.map((a, index) => {
+                            return <div key={index} className="news">{a}</div>
+                        })}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComponent />, document.getElementById('overview'));
+    </script>
+</body>
+
+</html>

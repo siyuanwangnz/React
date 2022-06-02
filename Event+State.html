@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="overview"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+            submit = (event) => {
+                event.preventDefault();
+                alert(this.state.user + this.state.password);
+            }
+
+            state = { user: "default", password: "default" }
+            change = (data) => {
+                return (event) => {
+                    this.setState({ [data]: event.target.value });
+                }
+
+            }
+            change1 = (data, event) => {
+                this.setState({ [data]: event.target.value })
+            }
+            render() {
+                return (
+                    <div>
+                        <form action="https://www.baidu.com" onSubmit={this.submit}>
+                            User: <input onChange={this.change('user')} type="text" name="user" />
+                            Password: <input onChange={event => this.change1('password', event)} type="text" name="password" />
+                            <button>Login</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login />, document.getElementById('overview'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="overview"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            onClick = () => {
+                alert(this.refs.input1.value);
+            }
+            onClick2 = () => {
+                alert(this.input2.value);
+            }
+            onClick3 = () => {
+                alert(this.input3.current.value);
+            }
+            saveInput = (currentNode) => {
+                this.input2 = currentNode
+            }
+            input3 = React.createRef()
+            render() {
+                return (
+                    <div>
+                        <input ref="input1" type="text" placeholder="Click here to" />
+                        <button ref="btn" onClick={this.onClick}>Click</button>
+                        <input onBlur={this.onClick2} ref={this.saveInput} type="text" />
+                        <input onBlur={this.onClick3} ref={this.input3} type="text" />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComponent />, document.getElementById('overview'));
+    </script>
+</body>
+
+</html>
