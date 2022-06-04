@@ -5,7 +5,7 @@ export default class Search extends Component {
     search = () => {
         const { keyWordElement: { value: keyWord } } = this
         axios.get(
-            `https://api.github.com/search/users?q=${keyWord}`
+            `http://localhost:3000/api1/search/users?q=${keyWord}`
         ).then(
             response => console.log("Successful", response.data),
             err => console.error(err)
