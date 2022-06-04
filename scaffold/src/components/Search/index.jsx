@@ -4,11 +4,17 @@ import axios from 'axios'
 export default class Search extends Component {
     search = () => {
         const { keyWordElement: { value: keyWord } } = this
+
+        this.props.update({ isFirst: false, isLoading: true })
         axios.get(
             `http://localhost:3000/api1/search/users?q=${keyWord}`
         ).then(
-            response => console.log("Successful", response.data),
-            err => console.error(err)
+            response => {
+                this.props.update({ users: response.data.items, isLoading: false });
+            },
+            err => {
+                this.props.update({ isLoading: false, isErr: err.message });
+            }
         )
     }
     render() {

@@ -5,18 +5,21 @@ export default class List extends Component {
     render() {
         return (
             <ul className={list.list}>
-                <div>
-                    <a href="" target="_blank" rel="noreferrer">
-                        <img alt="Profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwS70r6aZEg6-wofSf66x7MU7FiZSEFSOIQA&usqp=CAU" />
-                    </a>
-                    <p>Name</p>
-                </div>
-                <div>
-                    <a href="" target="_blank" rel="noreferrer">
-                        <img alt="Profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwS70r6aZEg6-wofSf66x7MU7FiZSEFSOIQA&usqp=CAU" />
-                    </a>
-                    <p>Name1</p>
-                </div>
+                {
+                    this.props.isFirst ? <h2>Enter and search</h2> :
+                        this.props.isLoading ? <h2>Loading...</h2> :
+                            this.props.isErr ? <h2>{this.props.isErr}</h2> :
+                                this.props.users.map((user) => {
+                                    return (
+                                        <div key={user.id}>
+                                            <a href={user.html_url} target="_blank" rel="noreferrer">
+                                                <img alt="Profile" src={user.avatar_url} style={{ width: '80px' }} />
+                                            </a>
+                                            <p>{user.login}</p>
+                                        </div>
+                                    )
+                                })
+                }
             </ul>
         )
     }
