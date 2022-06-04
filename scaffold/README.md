@@ -1,3 +1,7 @@
-lib
-*aixos
-*pubsubjs
+## ajax (Asynchronous JavaScript and XML)
+- [x] axios - xhr, promise
+- [ ] jquery - xhr
+- [ ] xhr (XMLHttpRequest)
+- [ ] fetch - promise
+## msg subscription
+* pubsubjs
