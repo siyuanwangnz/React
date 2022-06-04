@@ -1,12 +1,24 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Search extends Component {
+    search = () => {
+        const { keyWordElement: { value: keyWord } } = this
+        axios.get(
+            `https://api.github.com/search/users?q=${keyWord}`
+        ).then(
+            response => console.log("Successful", response.data),
+            err => console.error(err)
+        )
+    }
     render() {
         return (
             <section>
                 <h3>Search Github Users</h3>
                 <div>
-                    <input type="text" placeholder="Enter Name" />&nbsp;&nbsp;<button>Search</button>
+                    <input ref={c => this.keyWordElement = c} type="text" placeholder="Enter Name" />
+                    &nbsp;&nbsp;
+                    <button onClick={this.search}>Search</button>
                 </div>
             </section>
         )
