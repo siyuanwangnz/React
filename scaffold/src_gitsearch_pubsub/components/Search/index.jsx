@@ -2,18 +2,21 @@ import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
 
 export default class Search extends Component {
-    search = async () => {
+    search = () => {
         const { keyWordElement: { value: keyWord } } = this
 
         PubSub.publish('list', { isFirst: false, isLoading: true })
 
-        try {
-            const respones = await fetch(`http://localhost:3000/api1/search/users?q=${keyWord}`)
-            const data = await respones.json()
-            PubSub.publish('list', { users: data.items, isLoading: false });
-        } catch (err) {
-            PubSub.publish('list', { isLoading: false, isErr: err.message });
-        }
+        axios.get(
+            `http://localhost:3000/api1/search/users?q=${keyWord}`
+        ).then(
+            response => {
+                PubSub.publish('list', { users: response.data.items, isLoading: false });
+            },
+            err => {
+                PubSub.publish('list', { isLoading: false, isErr: err.message });
+            }
+        )
     }
     render() {
         return (
