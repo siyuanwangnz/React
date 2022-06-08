@@ -4,4 +4,6 @@
 - [ ] xhr (XMLHttpRequest)
 - [ ] fetch - promise
 ## msg subscription
-* pubsubjs
+- [x] pubsubjs
+## router
+- [x] react-router-dom

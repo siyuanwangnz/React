@@ -1,7 +1,6 @@
 import './App.css';
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import Header from './components/Header'
 import Home from './pages/Home'
 import About from './pages/About'
 import MyNavLink from './components/MyNavLink'
@@ -11,7 +10,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <div>
-          <Header />
+          <h2>React Router Demo</h2>
         </div>
         <div>
           <MyNavLink to="/home">Home</MyNavLink>
