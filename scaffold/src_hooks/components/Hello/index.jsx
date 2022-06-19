@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { root } from '../../index'
 
 export default function Hello() {
@@ -35,7 +35,7 @@ export default function Hello() {
     const input = React.useRef()
 
     return (
-        <div>
+        <Fragment>
             <h2>Count: {count}</h2>
             <button onClick={() => { setCount(count => count + 1) }}>+</button>
             <hr />
@@ -49,6 +49,6 @@ export default function Hello() {
             <hr />
             <input ref={input} type="text" />
             <button onClick={() => { alert(input.current.value) }}>Show Alert</button>
-        </div>
+        </Fragment>
     )
 }
