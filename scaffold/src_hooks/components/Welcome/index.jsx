@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Context
 const MyContext = React.createContext()
 export default function Welcome() {
     const [msg] = React.useState({ owner: 'Welcome', content: 'msg' })
