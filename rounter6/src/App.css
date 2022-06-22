@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+}
+
+.container {
+  margin: 200px auto;
+  width: 300px;
+  background: burlywood;
+}
+
+.form {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
